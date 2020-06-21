@@ -1,3 +1,5 @@
+package comparator
+
 class Offer(var title: String = "", 
             var link: String = "",
             var state: String = "",
