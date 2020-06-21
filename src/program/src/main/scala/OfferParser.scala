@@ -13,8 +13,7 @@ object OfferParser {
     val superSprzedawcaClass = "._9c44d_38vuk"
     val priceClass = "._9c44d_1zemI"
     val priceWithShipmentClass = ""
-    val linkClass = ""
-    val descriptionClass = "._9c44d_3TzmE" 
+    val descriptionClass = "._9c44d_3TzmE"
     val stateClass = ""
 
     def titleParser(el: Element): String = {
@@ -26,7 +25,7 @@ object OfferParser {
     }
 
     def linkParser(el: Element): String = {
-         "
+         el >> attr("href")("a")
     }
 
     def stateParser(el: Element): String = {
