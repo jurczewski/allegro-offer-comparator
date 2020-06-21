@@ -12,8 +12,7 @@ object OfferParser {
     val titelClass = "._9c44d_LUA1k"
     val superSprzedawcaClass = "._9c44d_38vuk"
     val priceClass = "._9c44d_1zemI"
-    val priceWithShipmentClass = ""
-    val descriptionClass = "._9c44d_3TzmE"
+    val priceWithShipmentClass = "._9c44d_21XN-"
     val stateClass = ""
 
     def titleParser(el: Element): String = {
@@ -21,6 +20,22 @@ object OfferParser {
     }
 
     def priceWithShipmentParser(el: Element): Double = {
+        var priceDiv = el >?> element(priceWithShipmentClass)
+        var list = priceDiv >> elementList("i")
+
+        if(list != None) {
+            var first = list.get(0)
+            val firstText = first >> text
+
+            if(firstText.contains("darmowa")){
+                return priceParser(el)
+            } else{
+                return parseDouble(firstText) match {
+                    case None => 0.0
+                    case Some(d: Double) => d
+                }
+            }
+        }    
         0.0
     }
 
@@ -56,5 +71,5 @@ object OfferParser {
         s = s.slice(0, s.length() - 2) // remove last "zł"
         s = s.replaceAll(",", ".") 
         Some(s.toDouble) 
-    } catch { case _ => None }
+    } catch { case _ : Throwable => None }
 }
