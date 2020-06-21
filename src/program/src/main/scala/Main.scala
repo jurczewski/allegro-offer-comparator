@@ -22,21 +22,22 @@ object Main extends App {
     var offer = new Offer()
     val parser = OfferParser
 
-    offer.desc = parser.descriptionParser(el)
-    offer.price = parser.priceParser(el)
+    offer.title = parser.titleParser(el)
+    offer.link = parser.linkParser(el)
+    offer.state = parser.stateParser(el)
     offer.isSuperSprzedawca = parser.superSprzedawcaParser(el)
-    //offer.title = el >> text("._9c44d_3TzmE") //todo: remove 'Oferta sponsorowana'
+    offer.price = parser.priceParser(el)
+    offer.priceWithShipment = parser.priceWithShipmentParser(el)
 
     offers +=(offer)
-   }
+  }
 
-   //Display all offers
-   offers.foreach(println)
+  //Display all offers
+  offers.foreach(println)
 }
 
-class Offer(var desc: String = "",
+class Offer(var title: String = "", 
             var link: String = "",
-            var title: String = "",
             var state: String = "",
             var isSuperSprzedawca: Boolean = false,
             var price: Double = 0.0,
@@ -44,5 +45,5 @@ class Offer(var desc: String = "",
 {
 
   override def toString: String =
-      s"Desc: $desc | link: $link | title: $title | state: $state | isSuperSprzedawca: $isSuperSprzedawca | price: $price zł | priceWithShipment: $priceWithShipment zł"
+      s"Title: $title | link: $link | state: $state | isSuperSprzedawca: $isSuperSprzedawca | price: $price zl | priceWithShipment: $priceWithShipment zl"
 }

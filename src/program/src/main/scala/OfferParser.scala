@@ -9,28 +9,24 @@ import scala.collection.mutable.ListBuffer
 
 object OfferParser {
 
-    val descriptionClass = "._9c44d_LUA1k"
+    val titelClass = "._9c44d_LUA1k"
     val superSprzedawcaClass = "._9c44d_38vuk"
     val priceClass = "._9c44d_1zemI"
     val priceWithShipmentClass = ""
     val linkClass = ""
-    val titelClass = ""
-    val state = ""
+    val descriptionClass = "._9c44d_3TzmE" 
+    val stateClass = ""
 
-    def descriptionParser(el: Element): String = {
-        el >> text(descriptionClass)
+    def titleParser(el: Element): String = {
+        el >> text(titelClass)
     }
 
-    def priceWithShipmentParser(el: Element): String = {
-        ""
+    def priceWithShipmentParser(el: Element): Double = {
+        0.0
     }
 
     def linkParser(el: Element): String = {
-        ""
-    }
-
-    def titleParser(el: Element): String = {
-        ""
+         "
     }
 
     def stateParser(el: Element): String = {
