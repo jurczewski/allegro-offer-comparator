@@ -2,8 +2,7 @@
 Simple Allegro offer comparator written completely in Scala.
 
 # Todo:
-* polskie znaki
+* parser danych z strony
 * parsowanie argumentów uruchamiania
-* interfejs dla filtra
-* filter chain
+* filtry jako funkcje + chain
 * wypisywanie na ekran
