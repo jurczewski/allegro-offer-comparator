@@ -18,9 +18,11 @@ object Main extends App {
   val items = doc >> elementList("._9c44d_3pyzl article")
   val offers = new ListBuffer[Offer]()
   
+  // Parse html to data
+  val parser = OfferParser
+  
   items.foreach { el =>
     var offer = new Offer()
-    val parser = OfferParser
 
     offer.title = parser.titleParser(el)
     offer.link = parser.linkParser(el)
@@ -34,4 +36,9 @@ object Main extends App {
 
   //Display all offers
   offers.foreach(println)
+
+  // Filter
+  val conf = new Conf(args)
+  if(conf.bananas.isSupplied) println("apples are: " + conf.apples())
+  println("bannanas: " + conf.bananas.isSupplied)
 }
