@@ -1,7 +1,5 @@
 package comparator
 
-import comparator._
-
 object Main extends App {
   val conf = new Conf(args) // Load args from cmd
 

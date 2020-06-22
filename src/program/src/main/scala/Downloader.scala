@@ -1,13 +1,9 @@
 package comparator
 
-import scala.collection.mutable.ListBuffer
-import filters._
-
 import net.ruippeixotog.scalascraper.browser.JsoupBrowser
-import net.ruippeixotog.scalascraper.model._
-import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
-import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
+import net.ruippeixotog.scalascraper.dsl.DSL._
+import net.ruippeixotog.scalascraper.model._
 
 object Downloader{
     def downloadOffers(query: String): List[Element] = {
