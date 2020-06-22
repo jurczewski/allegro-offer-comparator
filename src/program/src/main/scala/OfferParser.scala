@@ -13,7 +13,6 @@ object OfferParser {
     val superSprzedawcaClass = "._9c44d_38vuk"
     val priceClass = "._9c44d_1zemI"
     val priceWithShipmentClass = "._9c44d_21XN-"
-    val stateClass = ""
 
     def titleParser(el: Element): String = {
         el >> text(titelClass)
@@ -41,10 +40,6 @@ object OfferParser {
 
     def linkParser(el: Element): String = {
          el >> attr("href")("a")
-    }
-
-    def stateParser(el: Element): String = {
-        ""
     }
 
     def superSprzedawcaParser(el: Element): Boolean = {
