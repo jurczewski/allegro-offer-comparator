@@ -12,6 +12,5 @@ Simple Allegro offer comparator written completely in Scala.
 * Cena do x
 * Cena wysyłki od x
 * Cena wysyłki do x
-* Stan Nowy, Używany, Po zwrocie
 * Czy jest to superSprzedawca
 * Maks x ofert
