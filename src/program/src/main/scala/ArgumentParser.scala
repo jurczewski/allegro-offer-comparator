@@ -3,9 +3,13 @@ package comparator
 import org.rogach.scallop._
 
 class Conf(arguments: Seq[String]) extends ScallopConf(arguments) {
-  // val apples = opt[Int](required = true)
-  val apples = opt[Int]()
-  val bananas = opt[Int]()
-  // val name = trailArg[String]()
+  val query = opt[String](required = true)
+  val below = opt[Int]()
+  val above = opt[Int]()
+  val shipbelow = opt[Int]()
+  val shipabove = opt[Int]()
+  val supers = opt[Boolean]()
+  val count = opt[Int]()
+
   verify()
 }
