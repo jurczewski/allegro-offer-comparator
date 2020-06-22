@@ -1,12 +1,12 @@
 # allegro-offer-comparator
 Simple Allegro offer comparator written completely in Scala.
 
-# How to run comparator
+## How to run comparator
 * Launch sbt
 * Use `run --help` to check available parameters
 * Use `run --{arg} {value}` to lauch the comparator with different parameters
 
-# Available parameters:
+## Available parameters:
 ### Required:
 * query - Query to search for &nbsp;&nbsp; | &nbsp;&nbsp; Notice:  **remember to use parentheses**
 
