@@ -1,12 +1,10 @@
 package comparator
 
-import net.ruippeixotog.scalascraper.model._
-import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
-import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
-import scala.collection.mutable.ListBuffer
+import net.ruippeixotog.scalascraper.dsl.DSL._
+import net.ruippeixotog.scalascraper.model._
 
-import comparator.Offer._
+import scala.collection.mutable.ListBuffer
 
 object OfferParser {
 
@@ -19,7 +17,7 @@ object OfferParser {
         val offers = new ListBuffer[Offer]()
         
         items.foreach { el =>
-            var offer = new Offer()
+            val offer = new Offer()
 
             offer.title = titleParser(el)
             offer.link = linkParser(el)
@@ -74,14 +72,18 @@ object OfferParser {
     }
 
     def priceParser(el: Element): Double = {
-        val price: String = el >> text(priceClass)
+        val priceOption = el >?> text(priceClass)
+        val price: String = priceOption match {
+            case None => "-1.0"
+            case Some(s: String) => s
+        }
         parseDouble(price) match {
             case None => 0.0
             case Some(p: Double) => p
         }
     }
 
-    def parseDouble(str: String) = try { 
+    private def parseDouble(str: String) = try {
         var s = trimWhitespaces(str)
         s = removeCurrency(s)
         s = s.replaceAll(",", ".") 
