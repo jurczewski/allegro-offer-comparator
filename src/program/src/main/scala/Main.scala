@@ -11,9 +11,10 @@ import comparator.Offer._
 import filters.MaxPriceFilter
 
 object Main extends App {
-  val browser = JsoupBrowser()
+  val conf = new Conf(args) // Load args from cmd
 
-  val query = "monitor"
+  val browser = JsoupBrowser()
+  val query = conf.query()
   val doc = browser.get("https://allegro.pl/listing?string=" + query)
 
   val items = doc >> elementList("._9c44d_3pyzl article")
@@ -36,23 +37,22 @@ object Main extends App {
   }
 
   //Display all offers
+  println("Downloaded offers:")
   offers.foreach(println)
+  println("#"*100)
 
   // Filter
-  val conf = new Conf(args)
-  if(conf.bananas.isSupplied) println("apples are: " + conf.apples())
-  println("bannanas: " + conf.bananas.isSupplied)
+  var filterChain = new OfferFilterChain()
+  var filters = new ListBuffer[Offer => Boolean]
 
-  // var max = new MaxPriceFilter(10)
+  if(conf.max.isSupplied){
+    var max = new MaxPriceFilter(conf.max())
+    filters.+=(max.filter)
+  }  
 
-  // var filterChain = new OfferFilterChain()
+  var chain = filterChain.createFilterChain(filters.toList)
 
-  // var list = List(max.filter)
-
-  // var chain = filterChain.createFilterChain(list)
-
-  // var lista = List(new Offer("pasi", price = 5),
-  //                  new Offer("nie pasi", price = 30))
-  //     .filter(chain)
-  //     .foreach(o => println(o))
+  println("Filtered offers:")
+  offers.filter(chain)
+        .foreach(o => println(o))
 }
