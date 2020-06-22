@@ -4,6 +4,9 @@ import net.ruippeixotog.scalascraper.model._
 import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
+import scala.collection.mutable.ListBuffer
+
+import comparator.Offer._
 
 object OfferParser {
 
@@ -11,6 +14,24 @@ object OfferParser {
     val superSprzedawcaClass = "._9c44d_38vuk"
     val priceClass = "._9c44d_1zemI"
     val priceWithShipmentClass = "._9c44d_21XN-"
+
+    def parseElementsToOffers(items: List[Element]): List[Offer] = {
+        val offers = new ListBuffer[Offer]()
+        
+        items.foreach { el =>
+            var offer = new Offer()
+
+            offer.title = titleParser(el)
+            offer.link = linkParser(el)
+            offer.isSuperSprzedawca = superSprzedawcaParser(el)
+            offer.price = priceParser(el)
+            offer.priceWithShipment = priceWithShipmentParser(el)
+
+            offers +=(offer)
+        }
+
+        offers.toList
+    }
 
     def titleParser(el: Element): String = {
         el >> text(titelClass)
