@@ -1,11 +1,8 @@
 package comparator
 
-import net.ruippeixotog.scalascraper.browser.JsoupBrowser
-import net.ruippeixotog.scalascraper.model._
-import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
-import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
-import scala.collection.mutable.ListBuffer
+import net.ruippeixotog.scalascraper.dsl.DSL._
+import net.ruippeixotog.scalascraper.model._
 
 object OfferParser {
 
@@ -19,11 +16,11 @@ object OfferParser {
     }
 
     def priceWithShipmentParser(el: Element): Double = {
-        var priceDiv = el >?> element(priceWithShipmentClass)
-        var list = priceDiv >> elementList("i")
+        val priceDiv = el >?> element(priceWithShipmentClass)
+        val list = priceDiv >> elementList("i")
 
         if(list != None) {
-            var first = list.get(0)
+            val first = list.get(0)
             val firstText = first >> text
 
             if(firstText.contains("darmowa")){
@@ -62,9 +59,17 @@ object OfferParser {
     }
 
     def parseDouble(str: String) = try { 
-        var s = str.replaceAll("\\s", "") // remove whitespaces
-        s = s.slice(0, s.length() - 2) // remove last "zł"
+        var s = trimWhitespaces(str)
+        s = removeCurrency(s) // remove last "zł"
         s = s.replaceAll(",", ".") 
         Some(s.toDouble) 
     } catch { case _ : Throwable => None }
+
+    private def removeCurrency(s: String) = {
+        s.slice(0, s.length() - 2)
+    }
+
+    private def trimWhitespaces(str: String) = {
+        str.replaceAll("\\s", "")
+    }
 }
