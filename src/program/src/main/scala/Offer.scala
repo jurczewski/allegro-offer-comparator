@@ -14,6 +14,6 @@ class Offer(var title: String = "",
     var priceString: String = s"\n# Price: $price zl"
     priceString = priceString.concat(if(priceWithShipment > 0) s" ($priceWithShipment zl with shipment)" else "")
     val linkString = s"\n# Link: $link"
-    result + separator + titleString + superSprzedawca + priceString + linkString // + separator
+    result + separator + titleString + superSprzedawca + priceString + linkString + separator
   }
 }
