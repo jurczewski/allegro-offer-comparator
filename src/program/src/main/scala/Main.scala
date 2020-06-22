@@ -65,11 +65,16 @@ object Main extends App {
     var isSuperSprzedawca = new IsSuperSprzedawcaFilter()
     filters.+=(isSuperSprzedawca.filter)
   }
+  val count: Int = conf.count.toOption match {
+            case None => offers.length
+            case Some(c: Int) => c
+  }
 
   // Aplly filters
   var chain = filterChain.createFilterChain(filters.toList)
 
   println("Filtered offers:")
   offers.filter(chain)
+        .take(count)
         .foreach(println)
 }
