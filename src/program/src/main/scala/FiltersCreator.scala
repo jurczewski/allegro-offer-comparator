@@ -8,30 +8,25 @@ object FiltersCreator{
         var filters = new ListBuffer[Offer => Boolean]
 
         if(conf.min.isSupplied){
-            var min = new MinPriceFilter(conf.min())
+            val min = new MinPriceFilter(conf.min())
             filters.+=(min.filter)
         }
-
         if(conf.max.isSupplied){
-            var max = new MaxPriceFilter(conf.max())
+            val max = new MaxPriceFilter(conf.max())
             filters.+=(max.filter)
         }
-
         if(conf.shipmin.isSupplied){
-            var minShipment = new MinPriceWithShipmentFilter(conf.shipmin())
+            val minShipment = new MinPriceWithShipmentFilter(conf.shipmin())
             filters.+=(minShipment.filter)
         }
-
         if(conf.shipmax.isSupplied){
-            var maxShipment = new MaxPriceWithShipmentFilter(conf.shipmax())
+            val maxShipment = new MaxPriceWithShipmentFilter(conf.shipmax())
             filters.+=(maxShipment.filter)
         }
-
         if(conf.supers.isSupplied){
-            var isSuperSprzedawca = new IsSuperSprzedawcaFilter()
+            val isSuperSprzedawca = new IsSuperSprzedawcaFilter()
             filters.+=(isSuperSprzedawca.filter)
         }
-
         filters
     }
 }

@@ -1,13 +1,9 @@
 package comparator
 
-import comparator.Offer._
-import FiltersCreator._
-
 import net.ruippeixotog.scalascraper.browser.JsoupBrowser
-import net.ruippeixotog.scalascraper.model._
-import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
-import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
+import net.ruippeixotog.scalascraper.dsl.DSL._
+
 import scala.collection.mutable.ListBuffer
 
 object Main extends App {
@@ -24,7 +20,7 @@ object Main extends App {
   val parser = OfferParser
 
   items.foreach { el =>
-    var offer = new Offer()
+    val offer = new Offer()
 
     offer.title = parser.titleParser(el)
     offer.link = parser.linkParser(el)

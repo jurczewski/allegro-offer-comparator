@@ -1,9 +1,8 @@
 package comparator
 
-import net.ruippeixotog.scalascraper.model._
-import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
-import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
+import net.ruippeixotog.scalascraper.dsl.DSL._
+import net.ruippeixotog.scalascraper.model._
 
 object OfferParser {
 
@@ -26,9 +25,9 @@ object OfferParser {
                 val firstText = first >> text
 
                 if(firstText.contains("darmowa")){
-                    return priceParser(el)
+                    priceParser(el)
                 } else{
-                    return parseDouble(firstText) match {
+                    parseDouble(firstText) match {
                         case None => 0.0
                         case Some(d: Double) => d
                     }
