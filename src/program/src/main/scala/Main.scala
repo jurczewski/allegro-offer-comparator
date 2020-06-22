@@ -36,7 +36,7 @@ object Main extends App {
   }
 
   // Prepare filters
-  var filterChain = new OfferFilterChain()
+  var filterChain = OfferFilterChain
   
   val filters = FiltersCreator.addFiltersToList(conf)
   
