@@ -1,4 +1,5 @@
 package filters
+
 import comparator.Offer
 
 class MaxPriceWithShipmentFilter(val maxPrice: Double) extends Filter {
