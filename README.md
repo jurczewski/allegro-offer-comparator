@@ -6,6 +6,9 @@ Simple Allegro offer comparator written completely in Scala.
 * Use `run --help` to check available parameters
 * Use `run --{arg} {value}` to lauch the comparator with different parameters
 
+### Usage example
+Enter `run -q "monitor" --min 300 --max 500 --count 3 --supers --shipmin 350`
+
 ## Available parameters:
 ### Required:
 * query - Query to search for &nbsp;&nbsp; | &nbsp;&nbsp; Notice:  **remember to use parentheses**
