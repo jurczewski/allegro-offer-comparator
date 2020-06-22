@@ -28,7 +28,6 @@ object Main extends App {
 
     offer.title = parser.titleParser(el)
     offer.link = parser.linkParser(el)
-    offer.state = parser.stateParser(el)
     offer.isSuperSprzedawca = parser.superSprzedawcaParser(el)
     offer.price = parser.priceParser(el)
     offer.priceWithShipment = parser.priceWithShipmentParser(el)
@@ -37,9 +36,9 @@ object Main extends App {
   }
 
   //Display all offers
-  println("Downloaded offers:")
-  offers.foreach(println)
-  println("#"*100)
+//  println("Downloaded offers:")
+//  offers.foreach(println)
+//  println("#"*100)
 
   // Filter
   var filterChain = new OfferFilterChain()
