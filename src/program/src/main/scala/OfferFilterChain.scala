@@ -1,6 +1,6 @@
 package comparator
 
-class OfferFilterChain{
+object OfferFilterChain{
     def createFilterChain(ps: List[Offer => Boolean]): Offer => Boolean = {
         val acc: Offer => Boolean = _ => true
         ps.foldLeft[Offer => Boolean](acc)(mergeFilter)
