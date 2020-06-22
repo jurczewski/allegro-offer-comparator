@@ -1,5 +1,7 @@
 package comparator
 
+import net.ruippeixotog.scalascraper.model._
+import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import net.ruippeixotog.scalascraper.dsl.DSL.Parse._
 import scala.collection.mutable.ListBuffer
