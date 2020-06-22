@@ -8,5 +8,5 @@ class Offer(var title: String = "",
             var priceWithShipment: Double = 0.0)
 {
   override def toString: String =
-      s"Title: $title | state: $state | isSuperSprzedawca: $isSuperSprzedawca | price: $price zl | priceWithShipment: $priceWithShipment zl"
+      s"Title: $title | state: $state | isSuperSprzedawca: $isSuperSprzedawca | price: $price zl | priceWithShipment: $priceWithShipment zl \n$link"
 }
