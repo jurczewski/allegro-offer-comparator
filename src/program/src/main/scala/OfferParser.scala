@@ -17,12 +17,12 @@ object OfferParser {
     }
 
     def priceWithShipmentParser(el: Element): Double = {
-        var priceDiv = el >?> element(priceWithShipmentClass)
-        var list = priceDiv >> elementList("i")
+        val priceDiv = el >?> element(priceWithShipmentClass)
+        val list = priceDiv >> elementList("i")
 
         list match {
             case Some(_) => {
-                var first = list.get(0)
+                val first = list.get(0)
                 val firstText = first >> text
 
                 if(firstText.contains("darmowa")){
@@ -35,7 +35,7 @@ object OfferParser {
                 }
             }
             case None => 0.0
-        }    
+        }
     }
 
     def linkParser(el: Element): String = {
@@ -61,9 +61,17 @@ object OfferParser {
     }
 
     def parseDouble(str: String) = try { 
-        var s = str.replaceAll("\\s", "") // remove whitespaces
-        s = s.slice(0, s.length() - 2) // remove last 2 chars - "zł"
+        var s = trimWhitespaces(str)
+        s = removeCurrency(s)
         s = s.replaceAll(",", ".") 
         Some(s.toDouble) 
     } catch { case _ : Throwable => None }
+
+    private def removeCurrency(s: String) = {
+        s.slice(0, s.length() - 2)
+    }
+
+    private def trimWhitespaces(str: String) = {
+        str.replaceAll("\\s", "")
+    }
 }
