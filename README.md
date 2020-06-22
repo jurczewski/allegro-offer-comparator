@@ -1,6 +1,9 @@
 # allegro-offer-comparator
 Simple Allegro offer comparator written completely in Scala.
 
+# How to run comparator
+
+
 # Filtry:
 * Cena od x
 * Cena do x
