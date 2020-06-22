@@ -1,5 +1,0 @@
-package comparator
-
-object Filters {
-
-}
