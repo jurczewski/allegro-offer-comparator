@@ -1,11 +1,12 @@
 package comparator
 
 object Main extends App {
-  val conf = new Conf(args) // Load args from cmd
+  // Load args from cmd
+  val conf = new Conf(args)
 
+  //Download offers
   val query = conf.query()
   val items = Downloader.downloadOffers(query)
-
   val offers = OfferParser.parseElementsToOffers(items)
 
   // Prepare filters
@@ -15,7 +16,7 @@ object Main extends App {
             case Some(c: Int) => c
   }
   
-  // Aplly filters
+  // Apply filters and print results
   var chain = OfferFilterChain.createFilterChain(filters.toList)
 
   println("Filtered offers:")
