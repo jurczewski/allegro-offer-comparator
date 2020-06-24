@@ -17,15 +17,11 @@ object OfferParser {
         val offers = new ListBuffer[Offer]()
         
         items.foreach { el =>
-            val offer = new Offer()
-
-            offer.title = titleParser(el)
-            offer.link = linkParser(el)
-            offer.isSuperSprzedawca = superSprzedawcaParser(el)
-            offer.price = priceParser(el)
-            offer.priceWithShipment = priceWithShipmentParser(el)
-
-            offers +=(offer)
+            offers +=(new Offer(titleParser(el),
+                                linkParser(el),
+                                superSprzedawcaParser(el),
+                                priceParser(el),
+                                priceWithShipmentParser(el)))
         }
 
         offers.toList
